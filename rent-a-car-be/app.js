@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
-const port = 5555;
+const port = 1111;
 const carRoutes = require('./routes/carRoutes')
+const userRoutes = require('./routes/userRoutes')
+const rentRoutes = require('./routes/rentRoutes')
 
 const mongoose = require('mongoose')
 const morgan = require('morgan')
@@ -24,6 +26,8 @@ app.get('/', (req, res) => {
 })
 
 app.use(carRoutes)
+app.use(userRoutes)
+app.use(rentRoutes)
 
 app.use((req, res) => {
     res.status(404)

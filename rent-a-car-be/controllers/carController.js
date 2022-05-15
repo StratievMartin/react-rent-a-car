@@ -23,7 +23,7 @@ const car_details = (req, res) => {
 }
 const car_create_get = (req, res) => {
     const car = new Car({
-        brand: 'c-class',
+        brand: 's-class',
         model: 'mercedes',
         constructionYear: 2005,
         carType: 'economy',

@@ -7,6 +7,8 @@
 // If a customer has rented a vehicle more than 3 times in the last 60 days, they would be designated as
 // VIP customers and get a discount of 15%.const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const rentalEvent = new Schema({
@@ -20,12 +22,18 @@ const rentalEvent = new Schema({
     },
     //relationship with car
     car: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Car',
         required: true
     },
     //relationship with user.customer
     customer: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
 }, { timestamps: true })
+
+const RentalEvent = mongoose.model('RentalEvent', rentalEvent)
+
+module.exports = RentalEvent;
