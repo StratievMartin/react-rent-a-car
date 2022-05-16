@@ -1,6 +1,7 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
-const port = 5000;
+const port = 1111;
 
 // routes
 const carRoutes = require('./routes/carRoutes')
@@ -10,6 +11,7 @@ const rentRoutes = require('./routes/rentRoutes')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 
+app.use(cors());
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // mongo
-const apiUrl = 'http://localhost:5000';
+const apiUrl = 'http://localhost:1111';
 
 // Cars requests
 export function getAllCars() {
