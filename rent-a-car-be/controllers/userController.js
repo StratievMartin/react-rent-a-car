@@ -1,6 +1,6 @@
 const User = require('../models/user')
 
-const user_index = (req, res) => {
+const all_users = (req, res) => {
     User.find().sort({ createdAt: -1 })
         .then((result) => {
             res.send(result)
@@ -21,13 +21,15 @@ const user_details = (req, res) => {
             console.log(err);
         })
 }
-const user_create_get = (req, res) => {
-    const user = new User({
-        fullName: 'Martin Stratiev',
-        email: 'martinstratiev@gmail.com',
-        phone: 3591231231,
-        role: 'customer',
-    })
+const create_user = (req, res) => {
+    // {
+    //     fullName: 'Martin Stratiev',
+    //     email: 'martinstratiev@gmail.com',
+    //     phone: 3591231231,
+    //     role: 'customer',
+    // }
+    const data = req.body
+    const user = new User(data)
     user.save()
         .then((result) => {
             res.send(result)
@@ -36,7 +38,20 @@ const user_create_get = (req, res) => {
             console.log(err);
         })
 }
-const user_delete = (req, res) => {
+const update_user = (req, res) => {
+    const id = req.params.id
+    const data = req.body
+    
+    User.findByIdAndUpdate(id, data,
+        { new: true },
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            return res.send(result);
+        })
+    // .populate('car')
+    // .populate('customer')
+}
+const delete_user = (req, res) => {
     const id = req.params.id
     User.findByIdAndDelete(id)
         .then((result) => {
@@ -47,8 +62,9 @@ const user_delete = (req, res) => {
         })
 }
 module.exports = {
-    user_index,
+    all_users,
     user_details,
-    user_create_get,
-    user_delete
+    create_user,
+    update_user,
+    delete_user
 }

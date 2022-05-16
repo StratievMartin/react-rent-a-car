@@ -1,6 +1,6 @@
 const Rent = require('../models/rent')
 
-const rent_index = (req, res) => {
+const all_rents = (req, res) => {
     Rent.find().sort({ createdAt: -1 })
         .then((result) => {
             res.send(result)
@@ -12,23 +12,28 @@ const rent_index = (req, res) => {
 const rent_details = (req, res) => {
     const id = req.params.id;
     console.log(id);
-    Rent.findById(id).populate('car').populate('customer').exec((err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result);
-            res.send(result)
-        }
-    })
+    Rent.findById(id)
+        .populate('car')
+        .populate('customer')
+        .exec((err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(result);
+                res.send(result)
+            }
+        })
 
 }
-const rent_create_get = (req, res) => {
-    const rent = new Rent({
-        startDate: '11.11.2022',
-        endDate: '22.11.2022',
-        car: '62815746aa25130cd3606db1',
-        customer: '62815756aa25130cd3606db6'
-    })
+const create_rent = (req, res) => {
+    // {
+    //     startDate: '11.11.2022',
+    //     endDate: '22.11.2022',
+    //     car: '62815746aa25130cd3606db1',
+    //     customer: '62815756aa25130cd3606db6'
+    // }
+    const data = req.body
+    const rent = new Rent(data)
     rent.save()
         .then((result) => {
             res.send(result)
@@ -37,7 +42,20 @@ const rent_create_get = (req, res) => {
             console.log(err);
         })
 }
-const rent_delete = (req, res) => {
+const update_rent = (req, res) => {
+    const id = req.params.id
+    const data = req.body
+
+    Rent.findByIdAndUpdate(id, data,
+        { new: true },
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            return res.send(result);
+        })
+        .populate('car')
+        .populate('customer')
+}
+const delete_rent = (req, res) => {
     const id = req.params.id
     Rent.findByIdAndDelete(id)
         .then((result) => {
@@ -48,8 +66,9 @@ const rent_delete = (req, res) => {
         })
 }
 module.exports = {
-    rent_index,
+    all_rents,
     rent_details,
-    rent_create_get,
-    rent_delete
+    create_rent,
+    update_rent,
+    delete_rent
 }

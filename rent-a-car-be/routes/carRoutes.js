@@ -2,9 +2,10 @@ const express = require('express')
 const carController = require('../controllers/carController')
 const router = express.Router()
 
-router.get('/cars', carController.car_index)
+router.get('/cars', carController.all_cars)
 router.get('/cars/:id', carController.car_details)
-router.get('/add-car', carController.car_create_get)
-router.delete('/car/:id', carController.car_delete)
+router.post('/add-car', carController.create_car)
+router.put('/update-car/:id', carController.update_car)
+router.delete('/delete-car/:id', carController.delete_car)
 
 module.exports = router

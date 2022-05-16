@@ -1,6 +1,6 @@
 const Car = require('../models/car')
 
-const car_index = (req, res) => {
+const all_cars = (req, res) => {
     Car.find().sort({ createdAt: -1 })
         .then((result) => {
             res.send(result)
@@ -21,18 +21,20 @@ const car_details = (req, res) => {
             console.log(err);
         })
 }
-const car_create_get = (req, res) => {
-    const car = new Car({
-        brand: 's-class',
-        model: 'mercedes',
-        constructionYear: 2005,
-        carType: 'economy',
-        fuel: 'petrol',
-        seats: 2,
-        picture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.auto-data.net%2Fen%2Fmercedes-benz-e-class-model-1393&psig=AOvVaw3k9YBsiTlyYljzAAw_mKE9&ust=1652210962627000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDcp8-T0_cCFQAAAAAdAAAAABAD',
-        pricePerDay: 100,
-        carsAvailable: 3,
-    })
+const create_car = (req, res) => {
+    // {
+    //     brand: 's-class',
+    //     model: 'mercedes',
+    //     constructionYear: 2005,
+    //     carType: 'economy',
+    //     fuel: 'petrol',
+    //     seats: 2,
+    //     picture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.auto-data.net%2Fen%2Fmercedes-benz-e-class-model-1393&psig=AOvVaw3k9YBsiTlyYljzAAw_mKE9&ust=1652210962627000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDcp8-T0_cCFQAAAAAdAAAAABAD',
+    //     pricePerDay: 100,
+    //     carsAvailable: 3,
+    // }
+    const data = req.body
+    const car = new Car(data)
     car.save()
         .then((result) => {
             res.send(result)
@@ -41,7 +43,20 @@ const car_create_get = (req, res) => {
             console.log(err);
         })
 }
-const car_delete = (req, res) => {
+const update_car = (req, res) => {
+    const id = req.params.id
+    const data = req.body
+
+    Car.findByIdAndUpdate(id, data,
+        { new: true },
+        (err, result) => {
+            if (err) return res.status(500).send(err);
+            return res.send(result);
+        })
+        // .populate('car')
+        // .populate('customer')
+}
+const delete_car = (req, res) => {
     const id = req.params.id
     Car.findByIdAndDelete(id)
         .then((result) => {
@@ -52,8 +67,9 @@ const car_delete = (req, res) => {
         })
 }
 module.exports = {
-    car_index,
+    all_cars,
     car_details,
-    car_create_get,
-    car_delete
+    create_car,
+    update_car,
+    delete_car
 }
