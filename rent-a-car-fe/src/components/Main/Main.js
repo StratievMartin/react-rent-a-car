@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { Header } from "../Header/Header"
+import { Header } from "../header/Header"
 
 export const Main = () => {
    return (
