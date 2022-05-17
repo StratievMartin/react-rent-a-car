@@ -11,17 +11,12 @@ export function getUser(id) {
     return axios.get(`${apiUrl}/users/${id}`)
 }
 export function addUser(data) {
-    // {
-    //     fullName: 'Martin Stratiev',
-    //     email: 'martinstratiev@gmail.com',
-    //     phone: 3591231231,
-    //     role: 'customer',
-    // }
-    return axios.post(`${apiUrl}/add-user`, { data })
+    axios.get(`${apiUrl}/check-email/${data.email}`)
+    return axios.post(`${apiUrl}/add-user`, data)
 }
 export function updateUser(id, data) {
-    return axios.put(`${apiUrl}/update-user/${id}`, { data })
+    return axios.put(`${apiUrl}/update-user/${id}`, data)
 }
 export function deleteUser(id) {
-    return axios.get(`${apiUrl}/delete-user/${id}`)
+    return axios.delete(`${apiUrl}/delete-user/${id}`)
 }

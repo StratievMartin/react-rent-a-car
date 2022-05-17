@@ -4,7 +4,7 @@ import { Main } from '../main/Main';
 import './layout.scss'
 export const Layout = () => {
    return (
-      <div className='layout-bg'>
+      <div class="bg-gray-400" >
          <Header />
          <Main />
          <Footer />

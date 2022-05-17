@@ -22,11 +22,11 @@ export function addCar(data) {
     //     pricePerDay: 100,
     //     carsAvailable: 3,
     // }
-    return axios.post(`${apiUrl}/add-car`, { data })
+    return axios.post(`${apiUrl}/add-car`, data)
 }
 export function updateCar(id, data) {
-    return axios.get(`${apiUrl}/update-car/${id}`, { data })
+    return axios.put(`${apiUrl}/update-car/${id}`, data)
 }
 export function deleteCar(id) {
-    return axios.get(`${apiUrl}/delete-car/${id}`)
+    return axios.delete(`${apiUrl}/delete-car/${id}`)
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-import { getAllUsers } from "../../../utils/http-utils/user-requests"
+import { getAllUsers, deleteUser } from "../../../utils/http-utils/user-requests"
+import { UserCard } from "../user-card/UserCard"
 
 export const UsersList = () => {
     const [users, setUsers] = useState([])
@@ -7,15 +8,21 @@ export const UsersList = () => {
     useEffect(() => {
         getAllUsers()
             .then((res) => {
-                console.log(res.data)
                 setUsers(res.data)
             })
     }, [])
 
+    const deleteUserHandler = async (id) => {
+        await deleteUser(id)
+        setUsers(prev => {
+            return prev.filter(user => user.id !== id)
+        })
+    }
     return (
-        <div>
+        <div class="flex space-x-5">
             {users && users.map(user =>
-                <div key={user.id}>{user.fullName}</div>)}
+                <UserCard key={user.id} user={user} deleteUser={deleteUserHandler} />
+            )}
         </div>
     )
 }

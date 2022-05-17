@@ -41,7 +41,7 @@ const create_user = (req, res) => {
 const update_user = (req, res) => {
     const id = req.params.id
     const data = req.body
-    
+
     User.findByIdAndUpdate(id, data,
         { new: true },
         (err, result) => {
@@ -61,10 +61,20 @@ const delete_user = (req, res) => {
             console.log(err);
         })
 }
+const check_email = (req, res) => {
+    User.findOne({ email: req.params.id })
+        .then((result) => {
+            result ? res.send(true) : res.send(false)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
 module.exports = {
     all_users,
     user_details,
     create_user,
     update_user,
-    delete_user
+    delete_user,
+    check_email
 }

@@ -17,11 +17,11 @@ export function addRent(data) {
     //     car: '62815746aa25130cd3606db1',
     //     customer: '62815756aa25130cd3606db6'
     // }
-    return axios.post(`${apiUrl}/add-rent`, { data })
+    return axios.post(`${apiUrl}/add-rent`, data)
 }
 export function updateRent(id, data) {
-    return axios.get(`${apiUrl}/update-rent/${id}`, { data })
+    return axios.put(`${apiUrl}/update-rent/${id}`, data)
 }
 export function deleteRent(id) {
-    return axios.get(`${apiUrl}/delete-rent/${id}`)
+    return axios.delete(`${apiUrl}/delete-rent/${id}`)
 }
