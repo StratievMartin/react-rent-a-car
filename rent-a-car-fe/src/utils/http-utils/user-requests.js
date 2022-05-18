@@ -1,22 +1,42 @@
-import axios from "axios"
+import axios from 'axios';
 
 // mongo
 const apiUrl = 'http://localhost:1111';
 
+export function getLoggedUser(){
+    return JSON.parse(localStorage.getItem('loggedUser'))
+}
 // Users requests
 export function getAllUsers() {
-    return axios.get(`${apiUrl}/users`)
+    return axios.get(`${apiUrl}/users`);
 }
 export function getUser(id) {
-    return axios.get(`${apiUrl}/users/${id}`)
+    return axios.get(`${apiUrl}/users/${id}`);
 }
-export function addUser(data) {
-    axios.get(`${apiUrl}/check-email/${data.email}`)
-    return axios.post(`${apiUrl}/add-user`, data)
+export async function addUser(data) {
+    const alreadyExists = await axios.get(`${apiUrl}/check-email/${data.email}`)
+        .data;
+    console.log(alreadyExists);
+    if (alreadyExists) {
+        throw new Error('Email taken');
+    }
+    return axios.post(`${apiUrl}/add-user`, data);
+}
+export async function login(user) {
+    const allUsers = (await getAllUsers()).data;
+
+    const foundUser = allUsers.find(
+        (u) => u.email === user.email && u.password === user.password
+    );
+    if (!foundUser) {
+        throw new Error('Invalid credentials');
+    }
+    localStorage.setItem('loggedUser', JSON.stringify(foundUser))
+    return foundUser;
 }
 export function updateUser(id, data) {
-    return axios.put(`${apiUrl}/update-user/${id}`, data)
+    return axios.put(`${apiUrl}/update-user/${id}`, data);
 }
 export function deleteUser(id) {
-    return axios.delete(`${apiUrl}/delete-user/${id}`)
+    return axios.delete(`${apiUrl}/delete-user/${id}`);
 }

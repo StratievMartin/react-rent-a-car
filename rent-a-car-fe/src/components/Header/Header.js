@@ -7,7 +7,8 @@ export const Header = () => {
                <Link to="/users-list">Users list</Link>
                {/* <Link to="/cars-list">Cars list</Link>
                <Link to="/rents-list">Rents list</Link> */}
-               <Link to="/add-user">Add user</Link>
+               <Link to="/register">Register</Link>
+               <Link to="/login">Login</Link>
             </div>
             <div class="space-x-5">
                <Link to="/profile">Profile</Link>
