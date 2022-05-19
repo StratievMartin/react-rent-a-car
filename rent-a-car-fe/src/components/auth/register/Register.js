@@ -5,6 +5,7 @@ import {
 } from '../../../utils/http-utils/user-requests';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
 export const Register = () => {
     // {
     //     fullName: 'Martin Stratiev',
@@ -25,10 +26,6 @@ export const Register = () => {
     });
     const [error, setError] = useState(false);
 
-    useEffect(() => {
-      console.log('param',params);
-    }, [params])
-    
     const onFormSubmit = (e) => {
         e.preventDefault();
     };
@@ -56,9 +53,9 @@ export const Register = () => {
 
     return (
         <>
-            <form onSubmit={onFormSubmit} >
+            <form onSubmit={onFormSubmit}>
                 <div class="flex justify-center">
-                    <div class="text-left space-y-3 bg-orange-200 border-2 border-black px-10">
+                <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
                         <div>
                             <label htmlFor="fullName">Full Name</label>
                             <input

@@ -1,14 +1,15 @@
-const Rent = require('../models/rent')
+const Rent = require('../models/rent');
 
 const all_rents = (req, res) => {
-    Rent.find().sort({ createdAt: -1 })
+    Rent.find()
+        .sort({ createdAt: -1 })
         .then((result) => {
-            res.send(result)
+            res.send(result);
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 const rent_details = (req, res) => {
     const id = req.params.id;
     console.log(id);
@@ -20,11 +21,20 @@ const rent_details = (req, res) => {
                 console.log(err);
             } else {
                 console.log(result);
-                res.send(result)
+                res.send(result);
             }
+        });
+};
+const user_rents = (req, res) => {
+    const id = req.params.id;
+    Rent.find({ customer: req.params.id })
+        .then((result) => {
+            res.send(result);
         })
-
-}
+        .catch((err) => {
+            console.log(err);
+        });
+};
 const create_rent = (req, res) => {
     // {
     //     startDate: '11.11.2022',
@@ -32,43 +42,42 @@ const create_rent = (req, res) => {
     //     car: '62815746aa25130cd3606db1',
     //     customer: '62815756aa25130cd3606db6'
     // }
-    const data = req.body
-    const rent = new Rent(data)
+    const data = req.body;
+    const rent = new Rent(data);
     rent.save()
         .then((result) => {
-            res.send(result)
+            res.send(result);
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 const update_rent = (req, res) => {
-    const id = req.params.id
-    const data = req.body
+    const id = req.params.id;
+    const data = req.body;
 
-    Rent.findByIdAndUpdate(id, data,
-        { new: true },
-        (err, result) => {
-            if (err) return res.status(500).send(err);
-            return res.send(result);
-        })
+    Rent.findByIdAndUpdate(id, data, { new: true }, (err, result) => {
+        if (err) return res.status(500).send(err);
+        return res.send(result);
+    })
         .populate('car')
-        .populate('customer')
-}
+        .populate('customer');
+};
 const delete_rent = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     Rent.findByIdAndDelete(id)
         .then((result) => {
-            res.send('deleted')
+            res.send('deleted');
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 module.exports = {
     all_rents,
     rent_details,
     create_rent,
     update_rent,
-    delete_rent
-}
+    delete_rent,
+    user_rents,
+};

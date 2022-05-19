@@ -3,8 +3,8 @@ import axios from 'axios';
 // mongo
 const apiUrl = 'http://localhost:1111';
 
-export function getLoggedUser(){
-    return JSON.parse(localStorage.getItem('loggedUser'))
+export function getLoggedUser() {
+    return JSON.parse(localStorage.getItem('loggedUser'));
 }
 // Users requests
 export function getAllUsers() {
@@ -16,7 +16,6 @@ export function getUser(id) {
 export async function addUser(data) {
     const alreadyExists = await axios.get(`${apiUrl}/check-email/${data.email}`)
         .data;
-    console.log(alreadyExists);
     if (alreadyExists) {
         throw new Error('Email taken');
     }
@@ -31,7 +30,7 @@ export async function login(user) {
     if (!foundUser) {
         throw new Error('Invalid credentials');
     }
-    localStorage.setItem('loggedUser', JSON.stringify(foundUser))
+    localStorage.setItem('loggedUser', JSON.stringify(foundUser));
     return foundUser;
 }
 export function updateUser(id, data) {

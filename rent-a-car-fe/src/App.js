@@ -6,6 +6,7 @@ import { Register } from './components/auth/register/Register';
 import { UsersList } from './components/users/users-list/UsersList';
 import { User } from './components/users/user/User';
 import { AuthenticatedRoute } from './utils/guards/AuthenticatedRoute';
+import { Profile } from './components/profile/Profile';
 
 function App() {
     return (
@@ -13,6 +14,9 @@ function App() {
             <Routes>
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/register" element={<Register />} />
+                <Route exact path="/edit-user/:id" element={<Register />} />
+                <Route path="/profile" element={<Profile />} />
+                {/*  */}
                 <Route exact path="/" element={<Layout />}>
                     <Route
                         path="/users-list"

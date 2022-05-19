@@ -2,6 +2,7 @@ const express = require('express')
 const rentController = require('../controllers/rentController')
 const router = express.Router()
 
+router.get('/user-rents/:id', rentController.user_rents)
 router.get('/rents', rentController.all_rents)
 router.get('/rents/:id', rentController.rent_details)
 router.post('/add-rent', rentController.create_rent)

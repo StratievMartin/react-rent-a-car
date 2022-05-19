@@ -4,6 +4,9 @@ import axios from "axios"
 const apiUrl = 'http://localhost:1111';
 
 // Rents requests
+export function getUserRents(id) {
+    return axios.get(`${apiUrl}/user-rents/${id}`)
+}
 export function getAllRents() {
     return axios.get(`${apiUrl}/rents`)
 }

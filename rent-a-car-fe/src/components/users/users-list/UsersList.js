@@ -17,7 +17,7 @@ export const UsersList = () => {
     const deleteUserHandler = async (id) => {
         await deleteUser(id);
         setUsers((prev) => {
-            return prev.filter((user) => user.id !== id);
+            return prev.filter((user) => user._id !== id);
         });
     };
     return (
