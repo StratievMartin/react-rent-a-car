@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../../utils/http-utils/user-requests';
 export const Login = () => {
     const navigate = useNavigate();
@@ -61,13 +61,22 @@ export const Login = () => {
                                     required
                                 />
                             </div>
-                            <div class="flex justify-center">
-                                <button
-                                    onClick={() => console.log(2)}
-                                    class="bg-green-300 px-4 py-2 rounded-lg"
-                                >
-                                    Save
-                                </button>
+                            <div class="space-y-2">
+                                <div class="flex justify-center ">
+                                    <button
+                                        class="bg-green-300 hover:bg-green-400 px-4 py-2 rounded-lg "
+                                    >
+                                        Login
+                                    </button>
+                                </div>
+                                <div class="text-center">
+                                    <p>Don't have an account? </p>
+                                    <Link to="/register">
+                                        <button class="bg-blue-100 p-2 hover:bg-blue-300 rounded-md mt-2">
+                                            Register here!
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

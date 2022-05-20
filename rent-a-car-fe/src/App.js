@@ -5,38 +5,49 @@ import { Login } from './components/auth/login/Login';
 import { Register } from './components/auth/register/Register';
 import { UsersList } from './components/users/users-list/UsersList';
 import { User } from './components/users/user/User';
-import { AuthenticatedRoute } from './utils/guards/AuthenticatedRoute';
+import { AuthenticatedGuard } from './utils/guards/AuthenticatedGuard';
+import { NonAuthenticatedGuard } from './utils/guards/NonAuthenticatedGuard';
 import { Profile } from './components/profile/Profile';
+import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/register" element={<Register />} />
-                <Route exact path="/edit-user/:id" element={<Register />} />
-                <Route path="/profile" element={<Profile />} />
-                {/*  */}
-                <Route exact path="/" element={<Layout />}>
-                    <Route
-                        path="/users-list"
-                        element={
-                            <AuthenticatedRoute>
-                                <UsersList />
-                            </AuthenticatedRoute>
-                        }
-                    />
-                    <Route
-                        path="/users/:id"
-                        element={
-                            <AuthenticatedRoute>
-                                <User />
-                            </AuthenticatedRoute>
-                        }
-                    />
+                <Route
+                    exact
+                    path="/login"
+                    element={
+                        <NonAuthenticatedGuard>
+                            <Login />
+                        </NonAuthenticatedGuard>
+                    }
+                />
+                <Route
+                    exact
+                    path="/register"
+                    element={
+                        <NonAuthenticatedGuard>
+                            <Register />
+                        </NonAuthenticatedGuard>
+                    }
+                />
+                <Route
+                    exact
+                    path="/"
+                    element={
+                        <AuthenticatedGuard>
+                            <Layout />
+                        </AuthenticatedGuard>
+                    }
+                >
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/edit-user/:id" element={<Register />} />
+                    <Route path="/users-list" element={<UsersList />} />
+                    <Route path="/users/:id" element={<User />} />
                     {/* <Route path="/register/:id" element={<Register />} /> */}
-                    {/* auth */}
                 </Route>
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </div>
     );

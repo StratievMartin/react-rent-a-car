@@ -4,7 +4,7 @@ import {
     updateUser,
 } from '../../../utils/http-utils/user-requests';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export const Register = () => {
     // {
@@ -55,7 +55,7 @@ export const Register = () => {
         <>
             <form onSubmit={onFormSubmit}>
                 <div class="flex justify-center">
-                <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
+                    <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
                         <div>
                             <label htmlFor="fullName">Full Name</label>
                             <input
@@ -122,17 +122,27 @@ export const Register = () => {
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
-                        <div class="flex justify-center">
-                            <button
-                                onClick={() =>
-                                    params.id
-                                        ? updateUserHandler()
-                                        : addUserHandler()
-                                }
-                                class="bg-green-300 px-4 py-2 rounded-lg"
-                            >
-                                Save
-                            </button>
+                        <div class="space-y-2">
+                            <div class="flex justify-center ">
+                                <button
+                                    onClick={() =>
+                                        params.id
+                                            ? updateUserHandler()
+                                            : addUserHandler()
+                                    }
+                                    class="bg-green-300 hover:bg-green-400 px-4 py-2 rounded-lg "
+                                >
+                                    Register
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <p>Already have an account? </p>
+                                <Link to="/login">
+                                    <button class="bg-blue-100 p-2 hover:bg-blue-300 rounded-md mt-2">
+                                        Login here!
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
