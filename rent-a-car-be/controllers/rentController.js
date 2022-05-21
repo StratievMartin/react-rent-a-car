@@ -27,7 +27,7 @@ const rent_details = (req, res) => {
 };
 const user_rents = (req, res) => {
     const id = req.params.id;
-    Rent.find({ customer: req.params.id })
+    Rent.find({ customer: req.params.id }).populate('car')
         .then((result) => {
             res.send(result);
         })

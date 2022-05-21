@@ -6,6 +6,9 @@ const apiUrl = 'http://localhost:1111';
 export function getLoggedUser() {
     return JSON.parse(localStorage.getItem('loggedUser'));
 }
+export function logoutUser() {
+    return JSON.parse(localStorage.removeItem('loggedUser'));
+}
 // Users requests
 export function getAllUsers() {
     return axios.get(`${apiUrl}/users`);

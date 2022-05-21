@@ -14,7 +14,6 @@ export const Register = () => {
     //     phone: 3591231231,
     //     role: 'customer',
     // }
-
     const navigate = useNavigate();
     const params = useParams();
     const [user, setUser] = useState({
