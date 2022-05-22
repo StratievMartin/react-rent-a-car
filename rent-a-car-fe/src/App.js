@@ -9,8 +9,9 @@ import { AuthenticatedGuard } from './utils/guards/AuthenticatedGuard';
 import { NonAuthenticatedGuard } from './utils/guards/NonAuthenticatedGuard';
 import { Profile } from './components/profile/Profile';
 import { ErrorPage } from './pages/ErrorPage';
-import { CarsList } from './components/cars/cars-list/Cars-list';
+import { CarsList } from './components/cars/cars-list/CarsList';
 import { CarForm } from './components/cars/car-form/CarForm';
+import { Car } from './components/cars/car/Car';
 
 function App() {
     return (
@@ -44,13 +45,13 @@ function App() {
                     }
                 >
                     <Route path="/profile" element={<Profile />} />
-                    {/* user */}
                     <Route path="/edit-user/:id" element={<Register />} />
+                    {/* user */}
                     <Route path="/users-list" element={<UsersList />} />
                     <Route path="/users/:id" element={<User />} />
                     {/* car */}
                     <Route path="/cars-list" element={<CarsList />} />
-                    <Route path="/cars/:id" element={<CarForm />} />
+                    <Route path="/cars/:id" element={<Car />} />
                     <Route path="/add-car" element={<CarForm />} />
                     <Route path="/edit-car/:id" element={<CarForm />} />
                 </Route>

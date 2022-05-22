@@ -1,26 +1,27 @@
-const Car = require('../models/car')
+const Car = require('../models/car');
 
 const all_cars = (req, res) => {
-    Car.find().sort({ createdAt: -1 })
+    Car.find()
+        .sort({ createdAt: -1 })
         .then((result) => {
-            res.send(result)
+            res.send(result);
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 const car_details = (req, res) => {
     const id = req.params.id;
     console.log(id);
     Car.findById(id)
-        .then(result => {
+        .then((result) => {
             console.log(result);
-            res.send(result)
+            res.send(result);
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 const create_car = (req, res) => {
     // {
     //     brand: 's-class',
@@ -33,43 +34,41 @@ const create_car = (req, res) => {
     //     pricePerDay: 100,
     //     carsAvailable: 3,
     // }
-    const data = req.body
-    const car = new Car(data)
+    const data = req.body;
+    const car = new Car(data);
     car.save()
         .then((result) => {
-            res.send(result)
+            res.send(result);
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 const update_car = (req, res) => {
-    const id = req.params.id
-    const data = req.body
-
-    Car.findByIdAndUpdate(id, data,
-        { new: true },
-        (err, result) => {
-            if (err) return res.status(500).send(err);
-            return res.send(result);
-        })
-        // .populate('car')
-        // .populate('customer')
-}
+    const id = req.params.id;
+    const data = req.body;
+    console.log('BE', data);
+    Car.findByIdAndUpdate(id, data, { new: true }, (err, result) => {
+        if (err) return res.status(500).send(err);
+        return res.send(result);
+    })
+        .populate('car')
+        .populate('customer');
+};
 const delete_car = (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
     Car.findByIdAndDelete(id)
         .then((result) => {
-            res.send('deleted')
+            res.send('deleted');
         })
         .catch((err) => {
             console.log(err);
-        })
-}
+        });
+};
 module.exports = {
     all_cars,
     car_details,
     create_car,
     update_car,
-    delete_car
-}
+    delete_car,
+};

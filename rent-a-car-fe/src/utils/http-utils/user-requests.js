@@ -6,6 +6,9 @@ const apiUrl = 'http://localhost:1111';
 export function getLoggedUser() {
     return JSON.parse(localStorage.getItem('loggedUser'));
 }
+export function setLoggedUser(user) {
+    return localStorage.setItem('loggedUser', JSON.stringify(user));
+}
 export function logoutUser() {
     return JSON.parse(localStorage.removeItem('loggedUser'));
 }
@@ -33,7 +36,7 @@ export async function login(user) {
     if (!foundUser) {
         throw new Error('Invalid credentials');
     }
-    localStorage.setItem('loggedUser', JSON.stringify(foundUser));
+    setLoggedUser(foundUser)
     return foundUser;
 }
 export function updateUser(id, data) {
