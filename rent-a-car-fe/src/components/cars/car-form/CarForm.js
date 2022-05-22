@@ -25,8 +25,8 @@ export const CarForm = () => {
         brand: '',
         model: '',
         constructionYear: 0,
-        carType: '',
-        fuel: '',
+        carType: 'economy',
+        fuel: 'petrol',
         seats: 4,
         picture: '',
         pricePerDay: 0,
@@ -106,7 +106,13 @@ export const CarForm = () => {
                         </div>
                         <div>
                             <label htmlFor="carType">Car Type</label>
-                            <select name="carType" id="carType">
+                            <select
+                                name="carType"
+                                id="carType"
+                                onChange={onInputChange}
+                                value={car.carType}
+                                required
+                            >
                                 <option value="economy">Economy</option>
                                 <option value="estate">Estate</option>
                                 <option value="luxury">Luxury</option>
@@ -116,7 +122,13 @@ export const CarForm = () => {
                         </div>
                         <div>
                             <label htmlFor="fuel">Fuel</label>
-                            <select name="fuel" id="fuel">
+                            <select
+                                name="fuel"
+                                id="fuel"
+                                onChange={onInputChange}
+                                value={car.fuel}
+                                required
+                            >
                                 {/* 'petrol', 'diesel', 'hybrid', 'electric' */}
                                 <option value="petrol">Petrol</option>
                                 <option value="diesel">Diesel</option>

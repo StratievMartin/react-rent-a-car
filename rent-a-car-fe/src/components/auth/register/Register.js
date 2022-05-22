@@ -117,7 +117,7 @@ export const Register = () => {
                                 id="role"
                                 required
                             >
-                                <option value="customer ">Customer</option>
+                                <option value="customer">Customer</option>
                                 <option value="admin">Admin</option>
                             </select>
                         </div>

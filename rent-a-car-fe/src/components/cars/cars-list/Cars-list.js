@@ -27,7 +27,7 @@ export const CarsList = () => {
                     <CarCard
                         key={car.id}
                         car={car}
-                        deletecar={deleteCarHandler}
+                        deleteCar={deleteCarHandler}
                     />
                 ))}
         </div>

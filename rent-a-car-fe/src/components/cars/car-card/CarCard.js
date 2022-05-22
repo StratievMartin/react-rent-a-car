@@ -14,22 +14,16 @@ export const CarCard = ({ car, deleteCar }) => {
         return <p>No cars</p>;
     }
     return (
-        <div class="bg-gray-600 m-5 rounded-lg shadow-2xl p-10 text-left ">
-            <div class="flex justify-between w-full">
-                <div>
-                    <img src={`${car.picture}`} alt="img" />
-                    <h2 class="text-lg font-bold">{car.brand}</h2>
-                    <h3>{car.carType}</h3>
-                    <h3>{car.carsAvailable}</h3>
-                    <h3>{car.constructionYear}</h3>
-                    <h3>{car.fuel}</h3>
-                    <h3>{car.model}</h3>
-                    <h3>{car.pricePerDay}</h3>
-                    <h3>{car.seats}</h3>
-                </div>
-                <div class="flex-row space-y-10 ">
+        <div class="bg-gray-600 m-5 shadow-2xl rounded-xl text-left ">
+            <div>
+                <div class="relative">
+                    <img
+                        src={`${car.picture}`}
+                        class=" object-cover w-full rounded-t-xl max-h-52"
+                        alt="carImg"
+                    />
                     <div
-                        class="flex justify-end"
+                        class="absolute top-5 right-5 "
                         onClick={() => deleteCar(car._id)}
                     >
                         <svg
@@ -47,7 +41,19 @@ export const CarCard = ({ car, deleteCar }) => {
                             />
                         </svg>
                     </div>
-                    <div class="">
+                </div>
+                <div class="flex justify-between p-10">
+                    <div >
+                        <h2 class="text-lg font-bold">{car.brand}</h2>
+                        <h3>{car.carType}</h3>
+                        <h3>{car.carsAvailable}</h3>
+                        <h3>{car.constructionYear}</h3>
+                        <h3>{car.fuel}</h3>
+                        <h3>{car.model}</h3>
+                        <h3>{car.pricePerDay}</h3>
+                        <h3>{car.seats}</h3>
+                    </div>
+                    <div class="self-end">
                         {params ? (
                             <button
                                 onClick={redirectToEdit}

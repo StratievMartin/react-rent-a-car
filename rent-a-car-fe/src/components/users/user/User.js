@@ -9,7 +9,6 @@ export const User = () => {
     useEffect(() => {
         getUser(id).then((res) => {
             setUser(res.data);
-            // console.log(user);
         });
     }, []);
 

@@ -28,7 +28,7 @@ export const Login = () => {
             <div>
                 {/* class="bg-gray-400 h-screen" */}
                 <form onSubmit={onFormSubmit}>
-                    <div class="flex justify-center">
+                    <div class="flex justify-center items-center h-screen ">
                         <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
                             <div>
                                 <label htmlFor="email">Email</label>
