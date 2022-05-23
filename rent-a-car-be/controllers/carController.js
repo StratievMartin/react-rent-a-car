@@ -47,13 +47,16 @@ const create_car = (req, res) => {
 const update_car = (req, res) => {
     const id = req.params.id;
     const data = req.body;
-    console.log('BE', data);
+
     Car.findByIdAndUpdate(id, data, { new: true }, (err, result) => {
-        if (err) return res.status(500).send(err);
-        return res.send(result);
+        if (err) {
+            console.log('FFFF',err);
+            return res.status(500).send(err);
+        } else {
+            console.log('FCK', result);
+            return res.send(result);
+        }
     })
-        .populate('car')
-        .populate('customer');
 };
 const delete_car = (req, res) => {
     const id = req.params.id;

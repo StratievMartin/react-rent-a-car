@@ -1,6 +1,7 @@
 import {
     addUser,
     getUser,
+    setLoggedUser,
     updateUser,
 } from '../../../utils/http-utils/user-requests';
 import { useEffect, useState } from 'react';
@@ -41,20 +42,30 @@ export const Register = () => {
     };
     const updateUserHandler = async () => {
         await updateUser(user._id, user)
-            .then((res) => navigate('/users-list'))
+            .then((res) => {
+                setLoggedUser(user);
+                navigate('/users-list');
+            })
             .catch((err) => console.log(err));
     };
     useEffect(() => {
         if (params.id) {
             getUser(params.id).then((res) => setUser(res.data));
         }
+        console.log(params);
     }, [params.id]);
 
     return (
-        <>
+        <div class="bg-gray-400 h-screen">
             <form onSubmit={onFormSubmit}>
-                <div class="flex justify-center">
-                    <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
+                <div
+                    class={
+                        params
+                            ? 'flex justify-center mt-5'
+                            : 'items-center h-screen'
+                    }
+                >
+                    <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">
                         <div>
                             <label htmlFor="fullName">Full Name</label>
                             <input
@@ -109,7 +120,9 @@ export const Register = () => {
                             />
                         </div>
                         <div class="">
-                            <label htmlFor="role">Admin</label>
+                            <label htmlFor="role" class="block ">
+                                User type
+                            </label>
                             <select
                                 onChange={onInputChange}
                                 value={user.role}
@@ -121,7 +134,7 @@ export const Register = () => {
                                 <option value="admin">Admin</option>
                             </select>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-10">
                             <div class="flex justify-center ">
                                 <button
                                     onClick={() =>
@@ -129,23 +142,27 @@ export const Register = () => {
                                             ? updateUserHandler()
                                             : addUserHandler()
                                     }
-                                    class="bg-green-300 hover:bg-green-400 px-4 py-2 rounded-lg "
+                                    class="bg-green-200 hover:bg-green-300 px-4 py-2 border-2 border-gray rounded-md"
                                 >
-                                    Register
+                                    {params ? 'Save' : 'Register'}
                                 </button>
                             </div>
-                            <div class="text-center">
-                                <p>Already have an account? </p>
-                                <Link to="/login">
-                                    <button class="bg-blue-100 p-2 hover:bg-blue-300 rounded-md mt-2">
-                                        Login here!
-                                    </button>
-                                </Link>
-                            </div>
+                            {!params ? (
+                                <div class="text-center">
+                                    <p>Already have an account? </p>
+                                    <Link to="/login">
+                                        <button class="bg-blue-200 p-2 hover:bg-blue-300 border-2 border-gray rounded-md mt-2">
+                                            Login here!
+                                        </button>
+                                    </Link>
+                                </div>
+                            ) : (
+                                ''
+                            )}
                         </div>
                     </div>
                 </div>
             </form>
-        </>
+        </div>
     );
 };

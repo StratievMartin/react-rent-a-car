@@ -7,32 +7,22 @@ import {
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 export const CarForm = () => {
-    // {
-    //     brand: 's-class',
-    //     model: 'mercedes',
-    //     constructionYear: 2005,
-    //     carType: 'economy',
-    //     fuel: 'petrol',
-    //     seats: 2,
-    //     picture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.auto-data.net%2Fen%2Fmercedes-benz-e-class-model-1393&psig=AOvVaw3k9YBsiTlyYljzAAw_mKE9&ust=1652210962627000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKDcp8-T0_cCFQAAAAAdAAAAABAD',
-    //     pricePerDay: 100,
-    //     carsAvailable: 3,
-    // }
-
     const navigate = useNavigate();
     const params = useParams();
+    const [error, setError] = useState(false);
+
     const [car, setCar] = useState({
         brand: '',
         model: '',
-        constructionYear: 0,
+        constructionYear: '',
         carType: 'economy',
         fuel: 'petrol',
-        seats: 4,
+        seats: '',
         picture: '',
-        pricePerDay: 0,
-        carsAvailable: 0,
+        pricePerDay: '',
+        carsAvailable: '',
     });
-    const [error, setError] = useState(false);
+
     const onFormSubmit = (e) => {
         e.preventDefault();
     };
@@ -61,8 +51,8 @@ export const CarForm = () => {
     return (
         <>
             <form onSubmit={onFormSubmit}>
-                <div class="flex justify-center">
-                    <div class="text-left space-y-3">
+                <div class="flex justify-center mt-5">
+                    <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">
                         <div>
                             <label htmlFor="brand">Brand</label>
                             <input
@@ -105,38 +95,6 @@ export const CarForm = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="carType">Car Type</label>
-                            <select
-                                name="carType"
-                                id="carType"
-                                onChange={onInputChange}
-                                value={car.carType}
-                                required
-                            >
-                                <option value="economy">Economy</option>
-                                <option value="estate">Estate</option>
-                                <option value="luxury">Luxury</option>
-                                <option value="SUV">SUV</option>
-                                <option value="cargo">Cargo</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="fuel">Fuel</label>
-                            <select
-                                name="fuel"
-                                id="fuel"
-                                onChange={onInputChange}
-                                value={car.fuel}
-                                required
-                            >
-                                {/* 'petrol', 'diesel', 'hybrid', 'electric' */}
-                                <option value="petrol">Petrol</option>
-                                <option value="diesel">Diesel</option>
-                                <option value="hybrid">Hybrid</option>
-                                <option value="electric">Electric</option>
-                            </select>
-                        </div>
-                        <div>
                             <label htmlFor="seats">Seats</label>
                             <input
                                 onChange={onInputChange}
@@ -150,7 +108,7 @@ export const CarForm = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="picture">Picture</label>
+                            <label htmlFor="picture">Image link</label>
                             <input
                                 onChange={onInputChange}
                                 value={car.picture}
@@ -158,7 +116,7 @@ export const CarForm = () => {
                                 type="text"
                                 name="picture"
                                 id="picture"
-                                placeholder="Picture..."
+                                placeholder="Image link..."
                                 required
                             />
                         </div>
@@ -190,7 +148,44 @@ export const CarForm = () => {
                                 required
                             />
                         </div>
-
+                        <div class="flex justify-between">
+                            <div>
+                                <label htmlFor="carType" class="block">
+                                    Car Type
+                                </label>
+                                <select
+                                    name="carType"
+                                    id="carType"
+                                    onChange={onInputChange}
+                                    value={car.carType}
+                                    required
+                                >
+                                    <option value="economy">Economy</option>
+                                    <option value="estate">Estate</option>
+                                    <option value="luxury">Luxury</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="cargo">Cargo</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="fuel" class="block">
+                                    Fuel
+                                </label>
+                                <select
+                                    name="fuel"
+                                    id="fuel"
+                                    onChange={onInputChange}
+                                    value={car.fuel}
+                                    required
+                                >
+                                    {/* 'petrol', 'diesel', 'hybrid', 'electric' */}
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="electric">Electric</option>
+                                </select>
+                            </div>
+                        </div>
                         {error ? <span class="text-red-600">{error}</span> : ''}
 
                         <div class="flex justify-center">

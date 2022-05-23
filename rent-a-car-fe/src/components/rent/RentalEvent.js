@@ -46,14 +46,14 @@ export const RentalEvent = ({ car }) => {
 
     return (
         <div class="border border-1 rounded-lg p-5">
-            <h2 class="italic">Rental Period</h2>
+            <h2 class="italic font-bold text-center mb-2">Rental Period</h2>
             <div class="">
                 <label htmlFor="startDate">Start</label>
                 <input
                     onChange={handleDateChange}
                     required
                     value={rent.startDate}
-                    class="block"
+                    class="block p-2 my-1"
                     type="date"
                     name="startDate"
                     id="startDate"
@@ -63,7 +63,7 @@ export const RentalEvent = ({ car }) => {
                     onChange={handleDateChange}
                     required
                     value={rent.endDate}
-                    class="block"
+                    class="block p-2 my-1"
                     type="date"
                     name="endDate"
                     id="endDate"
@@ -71,7 +71,7 @@ export const RentalEvent = ({ car }) => {
                 {error ? <p class="text-red-600">Add proper dates!</p> : ''}
             </div>
             <button
-                class="bg-red-200 hover:bg-red-300 rounded-md px-4 py-2 "
+                class="bg-red-400 hover:bg-red-500 rounded-md px-4 py-2 mt-3"
                 onClick={rentHandler}
             >
                 Rent now!

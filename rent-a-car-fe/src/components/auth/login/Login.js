@@ -25,11 +25,10 @@ export const Login = () => {
     };
     return (
         <>
-            <div>
-                {/* class="bg-gray-400 h-screen" */}
+            <div class="bg-gray-400 h-screen">
                 <form onSubmit={onFormSubmit}>
-                    <div class="flex justify-center items-center h-screen ">
-                        <div class="text-left space-y-3 bg-blue-200 border-2 border-black p-10">
+                    <div class="flex justify-center items-center h-screen">
+                        <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">
                             <div>
                                 <label htmlFor="email">Email</label>
                                 <input
@@ -61,18 +60,16 @@ export const Login = () => {
                                     required
                                 />
                             </div>
-                            <div class="space-y-2">
+                            <div class="space-y-10">
                                 <div class="flex justify-center ">
-                                    <button
-                                        class="bg-green-300 hover:bg-green-400 px-4 py-2 rounded-lg "
-                                    >
+                                    <button class="bg-green-200 hover:bg-green-300 px-4 py-2 border-gray rounded-md">
                                         Login
                                     </button>
                                 </div>
                                 <div class="text-center">
                                     <p>Don't have an account? </p>
                                     <Link to="/register">
-                                        <button class="bg-blue-100 p-2 hover:bg-blue-300 rounded-md mt-2">
+                                        <button class="bg-blue-200 p-2 hover:bg-blue-300 border-2 border-gray rounded-md mt-2">
                                             Register here!
                                         </button>
                                     </Link>

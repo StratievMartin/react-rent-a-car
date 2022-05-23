@@ -30,14 +30,14 @@ export const ProfileCard = ({ user }) => {
                         </button>
                     </Link>
                 </div>
-                <div class=" bg-gray-500 rounded-b-xl">
+                <div class="bg-gray-500 rounded-b-xl text-center">
                     <div>
                         {userRents.length > 0 ? (
                             <>
                                 <RentCard userRents={userRents} />
                             </>
                         ) : (
-                            <div class="bg-red-200">No rents yet</div>
+                            <div class="bg-red-200 p-2 rounded-b-xl">No rents yet</div>
                         )}
                     </div>
                 </div>
