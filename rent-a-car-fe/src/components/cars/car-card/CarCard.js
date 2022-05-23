@@ -4,7 +4,7 @@ import { RentalEvent } from '../../rent/RentalEvent';
 export const CarCard = ({ car, deleteCar }) => {
     const navigate = useNavigate();
     const params = useParams().id;
-    
+
     const redirectToDetails = () => {
         navigate(`/cars/${car._id}`);
     };
@@ -74,7 +74,7 @@ export const CarCard = ({ car, deleteCar }) => {
                     <div class="place-self-end">
                         {params ? (
                             <>
-                                <RentalEvent car={params}/>
+                                <RentalEvent car={params} />
                                 <button
                                     onClick={redirectToEdit}
                                     class="bg-blue-200 hover:bg-blue-300 rounded-md px-4 py-2 "
