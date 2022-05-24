@@ -16,6 +16,12 @@ export function addCar(data) {
 export function updateCar(id, data) {
     return axios.put(`${apiUrl}/update-car/${id}`, data);
 }
+export function rentACar(id) {
+    return axios.put(`${apiUrl}/rent-a-car/${id}`);
+}
+export function returnACar(id) {
+    return axios.put(`${apiUrl}/return-a-car/${id}`);
+}
 export function deleteCar(id) {
     return axios.delete(`${apiUrl}/delete-car/${id}`);
 }

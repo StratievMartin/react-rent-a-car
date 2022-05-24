@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { RentCard } from '../../rent/rent-card/RentCard';
 export const ProfileCard = ({ user }) => {
     const [userRents, setUserRents] = useState([]);
-
+    
     useEffect(() => {
         if (user) {
             getUserRents(user._id)

@@ -1,25 +1,20 @@
 import { useEffect, useState } from 'react';
 import { getLoggedUser } from '../../utils/http-utils/user-requests';
 import { addRent } from '../../utils/http-utils/rent-requests';
-import { getCar, updateCar } from '../../utils/http-utils/car-requests';
+import { rentACar } from '../../utils/http-utils/car-requests';
 import { useNavigate } from 'react-router-dom';
 
 export const RentalEvent = ({ car }) => {
     const loggedUser = getLoggedUser();
     const navigate = useNavigate();
-    const [car1, setCar1] = useState();
     const [error, setError] = useState(false);
-    const [carsAvailable, setCarsAvailable] = useState(5);
+
     const [rent, setRent] = useState({
         startDate: '',
         endDate: '',
         car,
         customer: loggedUser._id,
     });
-
-    useEffect(() => {
-        setCar1(getCar(car));
-    }, []);
 
     const handleDateChange = (e) => {
         setRent((prev) => {
@@ -34,10 +29,7 @@ export const RentalEvent = ({ car }) => {
         } else {
             await addRent(rent)
                 .then((res) => {
-                    setCar1((prev) => prev.carsAvailable--);
-                    // updateCar(car, car1).then((res) =>
-                    //     console.log(res.data)
-                    // );
+                    rentACar(car);
                     navigate('/profile');
                 })
                 .catch((err) => console.log(err));
@@ -47,7 +39,7 @@ export const RentalEvent = ({ car }) => {
     return (
         <div class="border border-1 rounded-lg p-5">
             <h2 class="italic font-bold text-center mb-2">Rental Period</h2>
-            <div class="">
+            <div>
                 <label htmlFor="startDate">Start</label>
                 <input
                     onChange={handleDateChange}

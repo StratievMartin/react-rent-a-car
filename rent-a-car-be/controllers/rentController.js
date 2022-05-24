@@ -27,7 +27,7 @@ const rent_details = (req, res) => {
 };
 const user_rents = (req, res) => {
     const id = req.params.id;
-    Rent.find({ customer: req.params.id }).populate('car')
+    Rent.find({ customer: id }).populate('car')
         .then((result) => {
             res.send(result);
         })
@@ -65,13 +65,14 @@ const update_rent = (req, res) => {
 };
 const delete_rent = (req, res) => {
     const id = req.params.id;
-    Rent.findByIdAndDelete(id)
-        .then((result) => {
-            res.send('deleted');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    console.log('IDD',id);
+    // Rent.findByIdAndDelete({ customer: id })
+    //     .then((result) => {
+    //         res.send('deleted');
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
 };
 module.exports = {
     all_rents,

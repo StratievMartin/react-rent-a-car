@@ -50,13 +50,29 @@ const update_car = (req, res) => {
 
     Car.findByIdAndUpdate(id, data, { new: true }, (err, result) => {
         if (err) {
-            console.log('FFFF',err);
             return res.status(500).send(err);
         } else {
-            console.log('FCK', result);
             return res.send(result);
         }
-    })
+    });
+};
+const rent_a_car = (req, res) => {
+    const id = req.params.id;
+
+    Car.updateOne({ _id: id }, { $inc: { carsAvailable: -1 } })
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => console.log(err));
+};
+const return_a_car = (req, res) => {
+    const id = req.params.id;
+
+    Car.updateOne({ _id: id }, { $inc: { carsAvailable: +1 } })
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => console.log(err));
 };
 const delete_car = (req, res) => {
     const id = req.params.id;
@@ -74,4 +90,6 @@ module.exports = {
     create_car,
     update_car,
     delete_car,
+    rent_a_car,
+    return_a_car
 };
