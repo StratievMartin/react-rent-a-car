@@ -11,29 +11,36 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const rentalEvent = new Schema({
-    startDate: {
-        type: String,
-        required: true
+const rentalEvent = new Schema(
+    {
+        startDate: {
+            type: String,
+            required: true,
+        },
+        endDate: {
+            type: String,
+            required: true,
+        },
+        totalPrice: {
+            type: Number,
+            // required: true,
+        },
+        //relationship with car
+        car: {
+            type: Schema.Types.ObjectId,
+            ref: 'Car',
+            required: true,
+        },
+        //relationship with user
+        customer: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
     },
-    endDate: {
-        type: String,
-        required: true
-    },
-    //relationship with car
-    car: {
-        type: Schema.Types.ObjectId,
-        ref: 'Car',
-        required: true
-    },
-    //relationship with user.customer
-    customer: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-}, { timestamps: true })
+    { timestamps: true }
+);
 
-const RentalEvent = mongoose.model('RentalEvent', rentalEvent)
+const RentalEvent = mongoose.model('RentalEvent', rentalEvent);
 
 module.exports = RentalEvent;
