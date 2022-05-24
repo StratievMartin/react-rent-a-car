@@ -7,6 +7,7 @@ import {
 export const Header = () => {
     const navigate = useNavigate();
     const loggedUser = getLoggedUser();
+    const isAdmin = getLoggedUser().role === 'admin';
 
     const handleLogout = () => {
         navigate('/login');
@@ -20,9 +21,13 @@ export const Header = () => {
                     <Link to="/cars-list">Cars list</Link>
                     {/* <Link to="/rents-list">Rents list</Link> */}
                 </div>
-                <div>
-                    <Link to="/add-car">Add Cars</Link>
-                </div>
+                {isAdmin ? (
+                    <div>
+                        <Link to="/add-car">Add Cars</Link>
+                    </div>
+                ) : (
+                    ''
+                )}
                 <div class="space-x-5">
                     <Link to="/profile">{loggedUser.fullName}</Link>
                     <button onClick={() => handleLogout()}>Logout</button>

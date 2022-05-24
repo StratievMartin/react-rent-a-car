@@ -65,14 +65,13 @@ const update_rent = (req, res) => {
 };
 const delete_rent = (req, res) => {
     const id = req.params.id;
-    console.log('IDD',id);
-    // Rent.findByIdAndDelete({ customer: id })
-    //     .then((result) => {
-    //         res.send('deleted');
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
+    Rent.findOneAndDelete({ customer: id })
+        .then((result) => {
+            res.send('deleted');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 module.exports = {
     all_rents,

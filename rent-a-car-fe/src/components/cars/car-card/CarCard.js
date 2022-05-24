@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { getLoggedUser } from '../../../utils/http-utils/user-requests';
 import { RentalEvent } from '../../rent/RentalEvent';
 
 export const CarCard = ({ car, deleteCar }) => {
     const navigate = useNavigate();
     const params = useParams().id;
+    const isAdmin = getLoggedUser().role === 'admin';
 
     const redirectToDetails = () => {
         navigate(`/cars/${car._id}`);
@@ -37,25 +39,29 @@ export const CarCard = ({ car, deleteCar }) => {
                     <div class="bg-red-400 p-1 text-white absolute z-50 top-0 left-0 rounded-tl-xl font-bold rounded-br-xl">
                         {car.carsAvailable} Available
                     </div>
-                    <div
-                        class="absolute top-5 right-5 "
-                        onClick={() => deleteCar(car._id)}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 text-red-500 cursor-pointer"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
+                    {isAdmin && params ? (
+                        <div
+                            class="absolute top-5 right-5 "
+                            onClick={() => deleteCar(car._id)}
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
-                    </div>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-red-500 cursor-pointer"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </div>
+                    ) : (
+                        ''
+                    )}
                 </div>
                 <div class="flex justify-between items-start p-10 ">
                     <div>
@@ -78,12 +84,16 @@ export const CarCard = ({ car, deleteCar }) => {
                         {params ? (
                             <>
                                 <RentalEvent car={params} />
-                                <button
-                                    onClick={redirectToEdit}
-                                    class="bg-blue-200 mt-3  hover:bg-blue-300 rounded-md px-4 py-2 "
-                                >
-                                    Edit
-                                </button>
+                                {isAdmin ? (
+                                    <button
+                                        onClick={redirectToEdit}
+                                        class="bg-blue-200 mt-3  hover:bg-blue-300 rounded-md px-4 py-2 "
+                                    >
+                                        Edit
+                                    </button>
+                                ) : (
+                                    ''
+                                )}
                             </>
                         ) : (
                             <button

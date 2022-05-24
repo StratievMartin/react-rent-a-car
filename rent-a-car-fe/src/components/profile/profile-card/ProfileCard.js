@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUserRents } from '../../../utils/http-utils/rent-requests';
 import { Link } from 'react-router-dom';
 import { RentCard } from '../../rent/rent-card/RentCard';
+
 export const ProfileCard = ({ user }) => {
     const [userRents, setUserRents] = useState([]);
     
