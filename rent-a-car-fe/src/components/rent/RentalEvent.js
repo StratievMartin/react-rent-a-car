@@ -8,7 +8,7 @@ export const RentalEvent = ({ car }) => {
     const loggedUser = getLoggedUser();
     const navigate = useNavigate();
     const [error, setError] = useState(false);
-
+    
     const [rent, setRent] = useState({
         startDate: '',
         endDate: '',
@@ -29,6 +29,7 @@ export const RentalEvent = ({ car }) => {
         } else {
             await addRent(rent)
                 .then((res) => {
+                    console.log('FE',res);
                     rentACar(car);
                     navigate('/profile');
                 })
@@ -61,6 +62,7 @@ export const RentalEvent = ({ car }) => {
                     id="endDate"
                 />
                 {error ? <p class="text-red-600">Add proper dates!</p> : ''}
+                {/* {rent.startDate && rent.endDate ? <p class="text-red-600">Your price is</p> : ''} */}
             </div>
             <button
                 class="bg-red-400 hover:bg-red-500 rounded-md px-4 py-2 mt-3"

@@ -11,35 +11,6 @@ export const RentCard = ({ userRents }) => {
         deleteRent(userId);
         navigate('/cars-list');
     };
-    const calcRentSum = () => {
-        const vip = userRents.length >= 3;
-        const pricePerDay = userRents[0].car.pricePerDay;
-        const start = new Date(userRents[0].startDate).getTime();
-        const end = new Date(userRents[0].endDate).getTime();
-        const dif = end - start;
-        const rentalDays = dif / (1000 * 60 * 60 * 24);
-        let totalPrice = pricePerDay * rentalDays;
-
-        console.log('before discount', totalPrice, '\n', 'days', rentalDays);
-        if (vip) {
-            totalPrice -= (totalPrice * 15) / 100;
-            console.log('/vip/ -15%', totalPrice);
-        } else {
-            if (rentalDays > 3 && rentalDays < 5) {
-                totalPrice -= (totalPrice * 5) / 100;
-                console.log('-5%', totalPrice);
-            } else if (rentalDays > 5 && rentalDays < 10) {
-                totalPrice -= (totalPrice * 7) / 100;
-                console.log('-7%', totalPrice);
-            } else if (rentalDays > 10) {
-                totalPrice -= (totalPrice * 10) / 100;
-                console.log('-10%', totalPrice);
-            }
-        }
-    };
-    useEffect(() => {
-        calcRentSum();
-    }, []);
 
     return (
         <div>
@@ -52,7 +23,7 @@ export const RentCard = ({ userRents }) => {
                             onClick={() => {
                                 returnCarHandler(rent.car._id, rent.customer);
                             }}
-                            class="bg-red-400 hover:bg-red-500 rounded-md px-2 py-1 absolute top-5 right-5 rounded-tr-xl rounded-bl-xl "
+                            class="bg-red-400 hover:bg-red-500 px-2 py-1 absolute top-5 right-5 rounded-tr-xl rounded-bl-xl "
                         >
                             Return car
                         </button>

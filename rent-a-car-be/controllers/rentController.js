@@ -1,4 +1,5 @@
 const Rent = require('../models/rent');
+const Car = require('../models/car');
 
 const all_rents = (req, res) => {
     Rent.find()
@@ -36,11 +37,22 @@ const user_rents = (req, res) => {
             console.log(err);
         });
 };
-const calcRentSum = () => {
-    const vip = userRents.length >= 3;
-    const pricePerDay = userRents[0].car.pricePerDay;
-    const start = new Date(userRents[0].startDate).getTime();
-    const end = new Date(userRents[0].endDate).getTime();
+const calcRentSum = async (data) => {
+    let customerRents = 0;
+    let pricePerDay = 0;
+
+    await Rent.find({ customer: data.customer })
+        .then((res) => (customerRents = res))
+        .catch((err) => console.log(err));
+
+    await Car.findById(data.car)
+        .then((res) => (pricePerDay = res.pricePerDay))
+        .catch((err) => console.log(err));
+
+    const vip = customerRents.length >= 3;
+
+    const start = new Date(data.startDate).getTime();
+    const end = new Date(data.endDate).getTime();
     const dif = end - start;
     const rentalDays = dif / (1000 * 60 * 60 * 24);
     let totalPrice = pricePerDay * rentalDays;
@@ -61,8 +73,9 @@ const calcRentSum = () => {
             console.log('-10%', totalPrice);
         }
     }
+    return totalPrice
 };
-const create_rent = (req, res) => {
+const create_rent = async (req, res) => {
     // {
     //     startDate: '11.11.2022',
     //     endDate: '22.11.2022',
@@ -70,8 +83,10 @@ const create_rent = (req, res) => {
     //     customer: '62815756aa25130cd3606db6'
     // }
     const data = req.body;
+    const price = await calcRentSum(data)
+    data.totalPrice = price;
+    console.log('NEW RENT', data);
     const rent = new Rent(data);
-    console.log('NEW RENT',data);
     rent.save()
         .then((result) => {
             res.send(result);

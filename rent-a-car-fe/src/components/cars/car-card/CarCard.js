@@ -87,7 +87,7 @@ export const CarCard = ({ car, deleteCar }) => {
                                 {isAdmin ? (
                                     <button
                                         onClick={redirectToEdit}
-                                        class="bg-blue-200 mt-3  hover:bg-blue-300 rounded-md px-4 py-2 "
+                                        class="bg-blue-200 mt-3 hover:bg-blue-300 rounded-md px-4 py-2 "
                                     >
                                         Edit
                                     </button>
