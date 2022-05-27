@@ -22,7 +22,7 @@ export const CarCard = ({ car, deleteCar }) => {
         <div
             class={
                 params
-                    ? 'bg-gray-600 max-w-max m-0 m-auto mt-5 shadow-2xl rounded-xl text-left'
+                    ? 'bg-gray-600 max-w-max my-0 m-auto mt-5 shadow-2xl rounded-xl text-left'
                     : 'bg-gray-600 m-5 shadow-2xl rounded-xl text-left'
             }
         >

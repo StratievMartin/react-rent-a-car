@@ -5,7 +5,7 @@ import { Main } from '../main/Main';
 export const Layout = () => {
     return (
         <div class="bg-gray-400 h-screen">
-            <Header />
+            <Header class="mb-52" />
             <Main />
             <Footer />
         </div>

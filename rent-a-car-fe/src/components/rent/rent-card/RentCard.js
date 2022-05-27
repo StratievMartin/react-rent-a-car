@@ -18,7 +18,6 @@ export const RentCard = ({ userRents }) => {
                 {userRents.map((rent) => (
                     <div key={rent.id} class="relative">
                         <CarCard class="z-0" key={rent._id} car={rent.car} />
-
                         <button
                             onClick={() => {
                                 returnCarHandler(rent.car._id, rent.customer);
