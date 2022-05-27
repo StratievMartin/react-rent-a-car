@@ -13,6 +13,7 @@ export const CarCard = ({ car, deleteCar }) => {
     const redirectToEdit = () => {
         navigate(`/edit-car/${car._id}`);
     };
+    
     if (!car) {
         return <p>No cars</p>;
     }

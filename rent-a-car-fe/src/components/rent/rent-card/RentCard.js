@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { returnACar } from '../../../utils/http-utils/car-requests';
 import { deleteRent } from '../../../utils/http-utils/rent-requests';
@@ -19,6 +18,7 @@ export const RentCard = ({ userRents }) => {
                 {userRents.map((rent) => (
                     <div key={rent.id} class="relative">
                         <CarCard class="z-0" key={rent._id} car={rent.car} />
+
                         <button
                             onClick={() => {
                                 returnCarHandler(rent.car._id, rent.customer);
@@ -27,9 +27,10 @@ export const RentCard = ({ userRents }) => {
                         >
                             Return car
                         </button>
-                        <div class="bg-red-400 p-1 text-white absolute z-50 top-5 left-5 rounded-tl-xl rounded-br-xl ">
+                        <div class="bg-red-400 p-1 text-white text-left absolute z-50 top-5 left-5 rounded-tl-xl rounded-br-xl ">
                             <h2>Start Date: {rent.startDate}</h2>
                             <h2>End Date: {rent.endDate}</h2>
+                            <h2>Total Price: ${rent.totalPrice}</h2>
                         </div>
                     </div>
                 ))}

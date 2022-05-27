@@ -52,7 +52,6 @@ export const Register = () => {
         if (params.id) {
             getUser(params.id).then((res) => setUser(res.data));
         }
-        console.log(params);
     }, [params.id]);
 
     return (
