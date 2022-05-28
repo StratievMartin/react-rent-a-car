@@ -23,13 +23,14 @@ export const CarCard = ({ car, deleteCar }) => {
             class={
                 params
                     ? 'bg-gray-600 max-w-max my-0 m-auto mt-5 shadow-2xl rounded-xl text-left'
-                    : 'bg-gray-600 m-5 shadow-2xl rounded-xl text-left'
+                    : 'bg-gray-600 m-5 shadow-2xl rounded-xl text-left hover:-translate-y-1 hover:scale-110 duration-300'
             }
         >
             <div>
                 <div class="relative">
                     <img
                         src={`${car.picture}`}
+
                         class={
                             params
                                 ? 'w-full rounded-t-xl max-h-96'

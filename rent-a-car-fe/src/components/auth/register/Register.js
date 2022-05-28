@@ -60,7 +60,7 @@ export const Register = () => {
     }, [params.id]);
 
     return (
-        <div class="bg-gray-400 h-screen">
+        <div class="bg-gray-400 h-screen pt-5">
             <form onSubmit={onFormSubmit}>
                 <div
                     class={

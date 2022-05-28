@@ -12,6 +12,7 @@ import { ErrorPage } from './pages/ErrorPage';
 import { CarsList } from './components/cars/cars-list/CarsList';
 import { CarForm } from './components/cars/car-form/CarForm';
 import { Car } from './components/cars/car/Car';
+import { AdminGuard } from './utils/guards/AdminGuard';
 
 function App() {
     return (
@@ -52,9 +53,14 @@ function App() {
                     {/* car */}
                     <Route path="/cars-list" element={<CarsList />} />
                     <Route path="/cars/:id" element={<Car />} />
+                    {/* <Route path="/add-car" element={<CarForm />} />
+                    <Route path="/edit-car/:id" element={<CarForm />} /> */}
+                </Route>
+                <Route exact path="/" element={<AdminGuard />}>
                     <Route path="/add-car" element={<CarForm />} />
                     <Route path="/edit-car/:id" element={<CarForm />} />
                 </Route>
+
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </div>

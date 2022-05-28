@@ -18,7 +18,7 @@ export const CarsList = () => {
         });
     };
     return (
-        <div class="grid lg:grid-cols-3 md:grid-cols-2">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 mx-10">
             {cars &&
                 cars.map((car) =>
                     car.carsAvailable > 0 ? (

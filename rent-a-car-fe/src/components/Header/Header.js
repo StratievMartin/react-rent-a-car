@@ -13,13 +13,13 @@ export const Header = () => {
         navigate('/login');
         logoutUser();
     };
+
     return (
         <>
             <div class="p-5 flex justify-between bg-gray-500 ">
                 <div class="space-x-5">
-                    <Link to="/users-list">Users list</Link>
-                    <Link to="/cars-list">Cars list</Link>
-                    {/* <Link to="/rents-list">Rents list</Link> */}
+                    <Link to="/users-list">Users</Link>
+                    <Link to="/cars-list">Cars</Link>
                 </div>
                 {isAdmin ? (
                     <div>
@@ -30,7 +30,12 @@ export const Header = () => {
                 )}
                 <div class="space-x-5">
                     <Link to="/profile">{loggedUser.fullName}</Link>
-                    <button onClick={() => handleLogout()}>Logout</button>
+                    <button
+                        class="bg-red-400 hover:bg-red-500 px-2 py-1 rounded-lg "
+                        onClick={() => handleLogout()}
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
         </>

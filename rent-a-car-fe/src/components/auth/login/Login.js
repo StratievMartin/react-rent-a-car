@@ -19,7 +19,7 @@ export const Login = () => {
         e.preventDefault();
         login(user)
             .then(() => {
-                navigate('/users-list');
+                navigate('/cars-list');
             })
             .catch((err) => setError(err.message));
     };

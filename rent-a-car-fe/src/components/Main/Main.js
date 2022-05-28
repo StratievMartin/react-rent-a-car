@@ -16,10 +16,10 @@ export const Main = () => {
                 <Route path="/users/:id" element={<User />} />
                 <Route path="/edit-user/:id" element={<Register />} />
                 {/*  */}
-                <Route path="/add-car" element={<CarForm />} />
+                {/* <Route path="/add-car" element={<CarForm />} /> */}
                 <Route path="/cars-list" element={<CarsList />} />
                 <Route path="/cars/:id" element={<Car />} />
-                <Route path="/edit-car/:id" element={<CarForm />} />
+                {/* <Route path="/edit-car/:id" element={<CarForm />} /> */}
             </Routes>
         </>
     );
