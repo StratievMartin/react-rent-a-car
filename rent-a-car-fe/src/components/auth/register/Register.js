@@ -1,5 +1,6 @@
 import {
     addUser,
+    getLoggedUser,
     getUser,
     setLoggedUser,
     updateUser,
@@ -17,6 +18,8 @@ export const Register = () => {
     // }
     const navigate = useNavigate();
     const params = useParams();
+    const loggedUser = getLoggedUser();
+
     const [user, setUser] = useState({
         fullName: '',
         email: '',
@@ -43,7 +46,9 @@ export const Register = () => {
     const updateUserHandler = async () => {
         await updateUser(user._id, user)
             .then((res) => {
-                setLoggedUser(user);
+                if (!loggedUser.role === 'admin') {
+                    setLoggedUser(user);
+                }
                 navigate('/users-list');
             })
             .catch((err) => console.log(err));
@@ -59,9 +64,7 @@ export const Register = () => {
             <form onSubmit={onFormSubmit}>
                 <div
                     class={
-                        params
-                            ? 'flex justify-center mt-5'
-                            : 'items-center h-screen'
+                        params ? 'flex justify-center' : 'items-center h-screen'
                     }
                 >
                     <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">

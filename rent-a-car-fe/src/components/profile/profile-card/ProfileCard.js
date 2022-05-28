@@ -5,7 +5,7 @@ import { RentCard } from '../../rent/rent-card/RentCard';
 
 export const ProfileCard = ({ user }) => {
     const [userRents, setUserRents] = useState([]);
-    
+
     useEffect(() => {
         if (user) {
             getUserRents(user._id)
@@ -18,8 +18,8 @@ export const ProfileCard = ({ user }) => {
         }
     }, []);
     return (
-        <div class="flex justify-center m-5">
-            <div class="bg-blue-100 rounded-xl ">
+        <div class="flex justify-center m-5 ">
+            <div class="bg-blue-100 rounded-xl mb-20">
                 <div class="p-5 text-left text-lg">
                     <h2>Full Name: {user.fullName}</h2>
                     <h2>Email: {user.email}</h2>
@@ -38,7 +38,9 @@ export const ProfileCard = ({ user }) => {
                                 <RentCard userRents={userRents} />
                             </>
                         ) : (
-                            <div class="bg-red-200 p-2 rounded-b-xl">No rents yet</div>
+                            <div class="bg-red-200 p-2 rounded-b-xl">
+                                No rents yet
+                            </div>
                         )}
                     </div>
                 </div>

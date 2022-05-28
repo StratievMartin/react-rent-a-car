@@ -5,7 +5,6 @@ export const UserCard = ({ user, deleteUser }) => {
     const navigate = useNavigate();
     const params = useParams().id;
     const isAdmin = getLoggedUser().role === 'admin';
-
     const redirectToDetails = () => {
         navigate(`/users/${user._id}`);
     };
