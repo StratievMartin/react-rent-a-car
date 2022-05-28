@@ -36,7 +36,8 @@ export async function login(user) {
     if (!foundUser) {
         throw new Error('Invalid credentials');
     }
-    setLoggedUser(foundUser)
+    delete foundUser.password;
+    setLoggedUser(foundUser);
     return foundUser;
 }
 export function updateUser(id, data) {

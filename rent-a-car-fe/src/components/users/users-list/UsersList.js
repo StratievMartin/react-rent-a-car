@@ -13,24 +13,10 @@ export const UsersList = () => {
             setUsers(res.data);
         });
     }, []);
-
-    const deleteUserHandler = async (id) => {
-        console.log(id);
-        await deleteUser(id);
-        setUsers((prev) => {
-            return prev.filter((user) => user._id !== id);
-        });
-    };
     return (
         <div class="grid lg:grid-cols-3 md:grid-cols-2">
             {users &&
-                users.map((user) => (
-                    <UserCard
-                        key={user.id}
-                        user={user}
-                        deleteUser={deleteUserHandler}
-                    />
-                ))}
+                users.map((user) => <UserCard key={user._id} user={user} />)}
         </div>
     );
 };

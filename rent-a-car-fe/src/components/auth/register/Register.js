@@ -19,7 +19,7 @@ export const Register = () => {
     const navigate = useNavigate();
     const params = useParams();
     const loggedUser = getLoggedUser();
-
+    
     const [user, setUser] = useState({
         fullName: '',
         email: '',
@@ -60,11 +60,11 @@ export const Register = () => {
     }, [params.id]);
 
     return (
-        <div class="bg-gray-400 h-screen pt-5">
+        <div class="bg-gray-400 h-screen">
             <form onSubmit={onFormSubmit}>
                 <div
                     class={
-                        params ? 'flex justify-center' : 'items-center h-screen'
+                        params ? 'flex justify-center items-center h-screen' : 'items-center h-screen'
                     }
                 >
                     <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">
@@ -149,7 +149,7 @@ export const Register = () => {
                                     {params ? 'Save' : 'Register'}
                                 </button>
                             </div>
-                            {!params ? (
+                            {!params.id ? (
                                 <div class="text-center">
                                     <p>Already have an account? </p>
                                     <Link to="/login">

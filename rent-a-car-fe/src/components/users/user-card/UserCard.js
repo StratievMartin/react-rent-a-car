@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { getLoggedUser } from '../../../utils/http-utils/user-requests';
 
-export const UserCard = ({ user, deleteUser }) => {
+export const UserCard = ({ user, deleteUser }) => {    
     const navigate = useNavigate();
     const params = useParams().id;
     const isAdmin = getLoggedUser().role === 'admin';
+
     const redirectToDetails = () => {
         navigate(`/users/${user._id}`);
     };
@@ -24,7 +25,7 @@ export const UserCard = ({ user, deleteUser }) => {
                     <h3>{user.role}</h3>
                 </div>
                 <div class="flex-row space-y-10 ">
-                    {isAdmin && params? (
+                    {isAdmin && params ? (
                         <div
                             class="flex justify-end"
                             onClick={() => deleteUser(user._id)}

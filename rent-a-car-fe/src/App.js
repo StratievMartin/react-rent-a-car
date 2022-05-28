@@ -36,6 +36,12 @@ function App() {
                         </NonAuthenticatedGuard>
                     }
                 />
+
+                <Route exact path="/" element={<AdminGuard />}>
+                    <Route path="/add-car" element={<CarForm />} />
+                    <Route path="/edit-car/:id" element={<CarForm />} />
+                </Route>
+
                 <Route
                     exact
                     path="/"
@@ -55,10 +61,6 @@ function App() {
                     <Route path="/cars/:id" element={<Car />} />
                     {/* <Route path="/add-car" element={<CarForm />} />
                     <Route path="/edit-car/:id" element={<CarForm />} /> */}
-                </Route>
-                <Route exact path="/" element={<AdminGuard />}>
-                    <Route path="/add-car" element={<CarForm />} />
-                    <Route path="/edit-car/:id" element={<CarForm />} />
                 </Route>
 
                 <Route path="*" element={<ErrorPage />} />

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getLoggedUser } from '../../../utils/http-utils/user-requests';
 import { RentalEvent } from '../../rent/RentalEvent';
 
@@ -6,23 +6,22 @@ export const CarCard = ({ car, deleteCar }) => {
     const navigate = useNavigate();
     const params = useParams().id;
     const isAdmin = getLoggedUser().role === 'admin';
-
+    
     const redirectToDetails = () => {
         navigate(`/cars/${car._id}`);
     };
     const redirectToEdit = () => {
         navigate(`/edit-car/${car._id}`);
     };
-    
+
     if (!car) {
         return <p>No cars</p>;
     }
     return (
-        //
         <div
             class={
                 params
-                    ? 'bg-gray-600 max-w-max my-0 m-auto mt-5 shadow-2xl rounded-xl text-left'
+                    ? 'bg-gray-600 max-w-max m-auto my-5 shadow-2xl rounded-xl text-left'
                     : 'bg-gray-600 m-5 shadow-2xl rounded-xl text-left hover:-translate-y-1 hover:scale-110 duration-300'
             }
         >
@@ -30,7 +29,6 @@ export const CarCard = ({ car, deleteCar }) => {
                 <div class="relative">
                     <img
                         src={`${car.picture}`}
-
                         class={
                             params
                                 ? 'w-full rounded-t-xl max-h-96'
