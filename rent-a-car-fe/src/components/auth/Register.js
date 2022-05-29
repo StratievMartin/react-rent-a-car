@@ -4,20 +4,13 @@ import {
     updateUser,
 } from '../../utils/services/UsersService';
 import {
-    getLoggedUser,
     setLoggedUser,
+    getLoggedUser,
 } from '../../utils/localStorage/UserLocalStorage';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export const Register = () => {
-    // {
-    //     fullName: 'Martin Stratiev',
-    //     email: 'martinstratiev@gmail.com',
-    //     password: ,
-    //     phone: 3591231231,
-    //     role: 'customer',
-    // }
     const navigate = useNavigate();
     const params = useParams();
     const loggedUser = getLoggedUser();
@@ -48,10 +41,13 @@ export const Register = () => {
     const updateUserHandler = async () => {
         await updateUser(user._id, user)
             .then((res) => {
-                if (!loggedUser.role === 'admin') {
+                // editing your profile
+                if (loggedUser._id === params.id) {
                     setLoggedUser(user);
+                    navigate('/profile');
+                } else {
+                    navigate('/users-list');
                 }
-                navigate('/profile');
             })
             .catch((err) => console.log(err));
     };

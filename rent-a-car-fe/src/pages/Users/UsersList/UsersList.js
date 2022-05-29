@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-    getAllUsers,
-    deleteUser,
-} from '../../../utils/services/UsersService';
+import { getAllUsers, deleteUser } from '../../../utils/services/UsersService';
 import { UserCard } from '../../../components/UserCard/UserCard';
 
 export const UsersList = () => {
@@ -13,6 +10,7 @@ export const UsersList = () => {
             setUsers(res.data);
         });
     }, []);
+
     return (
         <div class="grid lg:grid-cols-3 md:grid-cols-2">
             {users &&
