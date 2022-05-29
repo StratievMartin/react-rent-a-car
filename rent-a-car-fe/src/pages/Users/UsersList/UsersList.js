@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import {
     getAllUsers,
     deleteUser,
-} from '../../../utils/http-utils/user-requests';
-import { UserCard } from '../user-card/UserCard';
+} from '../../../utils/services/UsersService';
+import { UserCard } from '../../../components/user-card/UserCard';
 
 export const UsersList = () => {
     const [users, setUsers] = useState([]);

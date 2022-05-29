@@ -1,12 +1,12 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getLoggedUser } from '../../../utils/http-utils/user-requests';
-import { RentalEvent } from '../../rent/RentalEvent';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getLoggedUser } from '../../utils/services/UsersService';
+import { RentalEvent } from '../rent/RentalEvent';
 
 export const CarCard = ({ car, deleteCar }) => {
     const navigate = useNavigate();
     const params = useParams().id;
     const isAdmin = getLoggedUser().role === 'admin';
-    
+
     const redirectToDetails = () => {
         navigate(`/cars/${car._id}`);
     };

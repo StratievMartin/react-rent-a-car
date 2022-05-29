@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { getLoggedUser } from '../../../utils/http-utils/user-requests';
+import { getLoggedUser } from '../../utils/services/UsersService';
 
-export const UserCard = ({ user, deleteUser }) => {    
+export const UserCard = ({ user, deleteUser }) => {
     const navigate = useNavigate();
     const params = useParams().id;
     const isAdmin = getLoggedUser().role === 'admin';
@@ -17,12 +17,18 @@ export const UserCard = ({ user, deleteUser }) => {
     }
     return (
         <div class="bg-gray-600 m-5 rounded-lg shadow-2xl p-10 text-left ">
-            <div class="flex justify-between w-full">
+            <div class="flex justify-between items-center w-full">
                 <div>
                     <h2 class="text-lg font-bold">{user.fullName}</h2>
-                    <h3>{user.email}</h3>
-                    <h3>{user.phone}</h3>
-                    <h3>{user.role}</h3>
+                    {params ? (
+                        <>
+                            <h3>email: {user.email}</h3>
+                            <h3>phone: +{user.phone}</h3>
+                            <h3>role: {user.role}</h3>
+                        </>
+                    ) : (
+                        ''
+                    )}
                 </div>
                 <div class="flex-row space-y-10 ">
                     {isAdmin && params ? (

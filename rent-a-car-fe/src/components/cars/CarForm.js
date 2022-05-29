@@ -2,10 +2,11 @@ import {
     addCar,
     getCar,
     updateCar,
-} from '../../../utils/http-utils/car-requests';
+} from '../../utils/services/CarsService';
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
 export const CarForm = () => {
     const navigate = useNavigate();
     const params = useParams();

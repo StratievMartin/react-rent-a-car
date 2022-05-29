@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { getLoggedUser } from '../http-utils/user-requests';
+import { getLoggedUser } from '../services/UsersService';
 
 export const NonAuthenticatedGuard = ({ children }) => {
   const user = getLoggedUser();

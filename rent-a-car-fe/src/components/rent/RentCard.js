@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { returnACar } from '../../../utils/http-utils/car-requests';
-import { deleteRent } from '../../../utils/http-utils/rent-requests';
-import { CarCard } from '../../cars/car-card/CarCard';
+import { returnACar } from '../../utils/services/CarsService';
+import { deleteRent } from '../../utils/services/RentsService';
+import { CarCard } from '../cars/CarCard';
 
 export const RentCard = ({ userRents }) => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getAllCars } from '../../../utils/http-utils/car-requests';
-import { CarCard } from '../car-card/CarCard';
+import { getAllCars } from '../../../utils/services/CarsService';
+import { CarCard } from '../../../components/cars/CarCard';
 
 export const CarsList = () => {
     const [cars, setCars] = useState([]);

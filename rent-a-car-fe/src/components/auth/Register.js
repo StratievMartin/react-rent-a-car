@@ -4,7 +4,7 @@ import {
     getUser,
     setLoggedUser,
     updateUser,
-} from '../../../utils/http-utils/user-requests';
+} from '../../utils/services/UsersService';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
@@ -49,7 +49,7 @@ export const Register = () => {
                 if (!loggedUser.role === 'admin') {
                     setLoggedUser(user);
                 }
-                navigate('/users-list');
+                navigate('/profile');
             })
             .catch((err) => console.log(err));
     };

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getLoggedUser } from '../../utils/http-utils/user-requests';
-import { addRent } from '../../utils/http-utils/rent-requests';
-import { rentACar } from '../../utils/http-utils/car-requests';
+import { getLoggedUser } from '../../utils/services/UsersService';
+import { addRent } from '../../utils/services/RentsService';
+import { rentACar } from '../../utils/services/CarsService';
 import { useNavigate } from 'react-router-dom';
-import { getUserRents } from '../../utils/http-utils/rent-requests';
-import { getCar } from '../../utils/http-utils/car-requests';
+import { getUserRents } from '../../utils/services/RentsService';
+import { getCar } from '../../utils/services/CarsService';
 
 export const RentalEvent = ({ car }) => {
     const loggedUser = getLoggedUser();

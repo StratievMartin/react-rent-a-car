@@ -1,18 +1,22 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './components/layout/Layout';
-import { Login } from './components/auth/login/Login';
-import { Register } from './components/auth/register/Register';
-import { UsersList } from './components/users/users-list/UsersList';
-import { User } from './components/users/user/User';
+
 import { AuthenticatedGuard } from './utils/guards/AuthenticatedGuard';
 import { NonAuthenticatedGuard } from './utils/guards/NonAuthenticatedGuard';
-import { Profile } from './components/profile/Profile';
-import { ErrorPage } from './pages/ErrorPage';
-import { CarsList } from './components/cars/cars-list/CarsList';
-import { CarForm } from './components/cars/car-form/CarForm';
-import { Car } from './components/cars/car/Car';
 import { AdminGuard } from './utils/guards/AdminGuard';
+
+import { Layout } from './components/layout/Layout';
+import { Login } from './components/auth/Login';
+import { Register } from './components/auth/Register';
+
+import { Profile } from './pages/Profile/Profile';
+import { UsersList } from './pages/Users/UsersList/UsersList';
+import { EditUser } from './pages/Users/EditUser/EditUser';
+import { User } from './pages/Users/User/User';
+import { CarsList } from './pages/Cars/CarsList/CarsList';
+import { EditCar } from './pages/Cars/EditCar/EditCar';
+import { Car } from './pages/Cars/Car/Car';
+import { ErrorPage } from './pages/Error/ErrorPage';
 
 function App() {
     return (
@@ -46,7 +50,7 @@ function App() {
                     }
                 >
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/edit-user/:id" element={<Register />} />
+                    <Route path="/edit-user/:id" element={<EditUser />} />
                     <Route path="/users-list" element={<UsersList />} />
                     <Route path="/users/:id" element={<User />} />
 
@@ -55,8 +59,8 @@ function App() {
                 </Route>
 
                 <Route exact path="/" element={<AdminGuard />}>
-                    <Route path="/add-car" element={<CarForm />} />
-                    <Route path="/edit-car/:id" element={<CarForm />} />
+                    <Route path="/add-car" element={<EditCar />} />
+                    <Route path="/edit-car/:id" element={<EditCar />} />
                 </Route>
 
                 <Route path="*" element={<ErrorPage />} />
