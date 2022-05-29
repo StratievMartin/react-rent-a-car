@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { getLoggedUser, logoutUser } from '../../utils/services/UsersService';
+import { getLoggedUser, logoutUser } from '../../utils/localStorage/UserLocalStorage';
 
 export const Header = () => {
     const navigate = useNavigate();

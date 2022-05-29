@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLoggedUser } from '../../utils/services/UsersService';
+import { getLoggedUser } from '../../utils/localStorage/UserLocalStorage';
 import { addRent } from '../../utils/services/RentsService';
 import { rentACar } from '../../utils/services/CarsService';
 import { useNavigate } from 'react-router-dom';

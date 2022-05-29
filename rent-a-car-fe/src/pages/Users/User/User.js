@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteUser, getUser } from '../../../utils/services/UsersService';
-import { UserCard } from '../../../components/user-card/UserCard';
+import { UserCard } from '../../../components/UserCard/UserCard';
 
 export const User = () => {
     const { id } = useParams();

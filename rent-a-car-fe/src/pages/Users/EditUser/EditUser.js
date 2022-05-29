@@ -1,4 +1,4 @@
-import { Register } from '../../../components/auth/Register';
+import { Register } from "../../../components/Auth/Register"; 
 
 export const EditUser = () => {
     return <Register />;

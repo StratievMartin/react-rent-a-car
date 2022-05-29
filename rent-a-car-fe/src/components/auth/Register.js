@@ -1,10 +1,12 @@
 import {
     addUser,
-    getLoggedUser,
     getUser,
-    setLoggedUser,
     updateUser,
 } from '../../utils/services/UsersService';
+import {
+    getLoggedUser,
+    setLoggedUser,
+} from '../../utils/localStorage/UserLocalStorage';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
@@ -19,7 +21,7 @@ export const Register = () => {
     const navigate = useNavigate();
     const params = useParams();
     const loggedUser = getLoggedUser();
-    
+
     const [user, setUser] = useState({
         fullName: '',
         email: '',
@@ -64,7 +66,9 @@ export const Register = () => {
             <form onSubmit={onFormSubmit}>
                 <div
                     class={
-                        params ? 'flex justify-center items-center h-screen' : 'items-center h-screen'
+                        params
+                            ? 'flex justify-center items-center h-screen'
+                            : 'items-center h-screen'
                     }
                 >
                     <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">

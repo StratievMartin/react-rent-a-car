@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { getLoggedUser } from '../../utils/services/UsersService';
+import { getLoggedUser } from '../../utils/localStorage/UserLocalStorage';
 
 export const UserCard = ({ user, deleteUser }) => {
     const navigate = useNavigate();

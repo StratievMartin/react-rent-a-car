@@ -5,7 +5,7 @@ import {
 } from '../../utils/services/CarsService';
 
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export const CarForm = () => {
     const navigate = useNavigate();
@@ -55,6 +55,7 @@ export const CarForm = () => {
                 <form onSubmit={onFormSubmit}>
                     <div class="flex justify-center pt-5">
                         <div class="text-left space-y-3 bg-gray-300 border-2 border-gray rounded-xl p-10">
+                            <Link to="/cars-list" class="flex justify-end text-red-400 hover:text-red-500 transition ease-in-out delay-100 cursor-pointer">Back to cars</Link>
                             <div>
                                 <label htmlFor="brand">Brand</label>
                                 <input

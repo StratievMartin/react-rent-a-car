@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getUserRents } from '../../utils/services/RentsService';
 import { Link } from 'react-router-dom';
-import { RentCard } from '../rent/RentCard';
+import { RentCard } from '../Rent/RentCard';
 
 export const ProfileCard = ({ user }) => {
     const [userRents, setUserRents] = useState([]);

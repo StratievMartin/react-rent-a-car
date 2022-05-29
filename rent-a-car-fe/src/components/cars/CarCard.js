@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { getLoggedUser } from '../../utils/services/UsersService';
-import { RentalEvent } from '../rent/RentalEvent';
+import { getLoggedUser } from '../../utils/localStorage/UserLocalStorage';
+import { RentalEvent } from '../Rent/RentalEvent';
 
 export const CarCard = ({ car, deleteCar }) => {
     const navigate = useNavigate();

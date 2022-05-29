@@ -1,5 +1,5 @@
-import { getLoggedUser } from '../../utils/services/UsersService';
-import { ProfileCard } from '../../components/profile-card/ProfileCard';
+import { getLoggedUser } from '../../utils/localStorage/UserLocalStorage';
+import { ProfileCard } from '../../components/ProfileCard/ProfileCard';
 
 export const Profile = () => {
     const user = getLoggedUser();

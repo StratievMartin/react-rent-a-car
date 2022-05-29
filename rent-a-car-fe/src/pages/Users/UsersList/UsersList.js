@@ -3,7 +3,7 @@ import {
     getAllUsers,
     deleteUser,
 } from '../../../utils/services/UsersService';
-import { UserCard } from '../../../components/user-card/UserCard';
+import { UserCard } from '../../../components/UserCard/UserCard';
 
 export const UsersList = () => {
     const [users, setUsers] = useState([]);

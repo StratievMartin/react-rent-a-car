@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteCar, getCar } from '../../../utils/services/CarsService';
-import { CarCard } from '../../../components/cars/CarCard';
+import { CarCard } from '../../../components/Cars/CarCard';
 
 export const Car = () => {
     const { id } = useParams();

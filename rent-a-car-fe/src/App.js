@@ -5,9 +5,9 @@ import { AuthenticatedGuard } from './utils/guards/AuthenticatedGuard';
 import { NonAuthenticatedGuard } from './utils/guards/NonAuthenticatedGuard';
 import { AdminGuard } from './utils/guards/AdminGuard';
 
-import { Layout } from './components/layout/Layout';
-import { Login } from './components/auth/Login';
-import { Register } from './components/auth/Register';
+import { Layout } from './components/Layout/Layout';
+import { Login } from './components/Auth/Login';
+import { Register } from './components/Auth/Register';
 
 import { Profile } from './pages/Profile/Profile';
 import { UsersList } from './pages/Users/UsersList/UsersList';

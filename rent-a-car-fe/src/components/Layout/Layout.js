@@ -1,6 +1,6 @@
-import { Header } from '../header/Header';
-import { Footer } from '../footer/Footer';
-import { Main } from '../main/Main';
+import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
+import { Main } from '../Main/Main';
 
 export const Layout = () => {
     return (
