@@ -27,7 +27,7 @@ export const RentalEvent = ({ car }) => {
         getCar(car).then((res) => {
             setPricePerDay(res.data.pricePerDay);
         });
-    }, []);
+    }, [loggedUser._id,car]);
 
     const calcRentSum = () => {
         const vip = customerRents >= 3;

@@ -16,7 +16,7 @@ export const ProfileCard = ({ user }) => {
                     console.log(err);
                 });
         }
-    }, []);
+    }, [user]);
     return (
         <div class="flex justify-center m-5 ">
             <div class="bg-blue-100 rounded-xl ">

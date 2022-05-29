@@ -12,7 +12,8 @@ export const User = () => {
         getUser(id).then((res) => {
             setUser(res.data);
         });
-    }, []);
+    }, [id]);
+    
     const deleteUserHandler = async (id) => {
         await deleteUser(id);
         navigate('/users-list')

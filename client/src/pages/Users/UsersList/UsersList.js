@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllUsers, deleteUser } from '../../../utils/services/UsersService';
+import { getAllUsers } from '../../../utils/services/UsersService';
 import { UserCard } from '../../../components/UserCard/UserCard';
 
 export const UsersList = () => {

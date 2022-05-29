@@ -12,7 +12,7 @@ export const Car = () => {
         getCar(id).then((res) => {
             setCar(res.data);
         });
-    }, []);
+    }, [id]);
 
     const deleteCarHandler = async (id) => {
         await deleteCar(id);
